@@ -1,9 +1,17 @@
 const express = require("express");
 const morgan = require("morgan")
+const cors = require("cors")
+const dotenv = require("dotenv")
 
 const app = express();
 
 app.use(express.json());
+app.use(cors())
+
+
+dotenv.config()
+
+const PORT = process.env.PORT || 3000
 
 const person = [
   {
@@ -91,6 +99,6 @@ app.delete("/api/person/:id", (req, res) => {
   res.status(204).end();
 });
 
-app.listen("3000", () => {
+app.listen(PORT, () => {
   console.log("server starting on port 3000");
 });
